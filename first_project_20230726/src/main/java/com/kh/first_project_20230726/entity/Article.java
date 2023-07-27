@@ -3,6 +3,7 @@ package com.kh.first_project_20230726.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -54,9 +55,10 @@ public class Article {
    * 필드를 기본 키로 설정한다
    */
   @Id
-  // 기본키 값을 자동으로 생성한다
-  @GeneratedValue
-  private long id;
+  // 기본키 값을 자동으로 생성하며 시퀀스가 1부터 시작한다
+  //  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
   // 테이블 컬럼과 매핑한다
   @Column

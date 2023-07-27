@@ -1,6 +1,6 @@
 {{> ./layouts/header }}
 
-<form class="container p-5" action="/Articles/create" method="post">
+<form class="container p-5" action="/articles/create" method="post">
     <div class="mb-3">
         <label for="title" class="form-label">제목</label>
         <input type="text" class="form-control" id="title" name="title"/>
@@ -10,6 +10,7 @@
         <textarea class="form-control" id="content" rows="5" name="content" style="resize: none;"></textarea>
     </div>
     <button type="submit" class="btn btn-primary">저장</button>
+    <a href="/articles/" class="btn btn-primary">목록으로</a>
 </form>
 
 {{> ./layouts/footer }}
