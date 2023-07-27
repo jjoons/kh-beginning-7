@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.kh.d20230727_problem_1.constant.CommonConstant;
 import com.kh.d20230727_problem_1.dao.StudentDAO;
+import com.kh.d20230727_problem_1.util.CommonUtil;
 
 @Controller
 public class MainController {
@@ -52,8 +53,10 @@ public class MainController {
 
     var sessionHakbun = (String) session.getAttribute(CommonConstant.SESSION_ATTR_LOGIN_ID);
     var student = this.studentDAO.getStudentByHakbun(sessionHakbun);
+    var majorName = CommonUtil.getMajor(student.getMajor());
 
     model.addAttribute("student", student);
+    model.addAttribute("majorName", majorName);
 
     return "enroll";
   }
