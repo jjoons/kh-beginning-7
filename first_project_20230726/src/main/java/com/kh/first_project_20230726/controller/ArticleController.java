@@ -130,7 +130,7 @@ public class ArticleController {
     }
 
     // 수정한 글 한건만 보여주고 싶을 때는
-    return "/articles/" + article.getId();
+    return "redirect:/articles/" + article.getId();
   }
 
   @GetMapping(value = "/articles/{id}/delete")
