@@ -43,4 +43,42 @@ public class ArticleService {
 
     return this.articleRepository.save(article);
   }
+
+  // 수정
+  public Article update(Long id, ArticleForm dto) {
+    Article article = dto.toEntity();
+    Article target = this.articleRepository.findById(id).orElse(null);
+
+    /*
+     * 수정할 대상이 없거나 id가 다른 경우
+     * 잘못된 요청이다 (400)
+     */
+    if (target == null || target.getId() != id) {
+      log.info("잘못된 요청: id: {}, article: {}", id, article);
+      return null;
+    }
+
+    /*
+     * 수정할 title이나 content가 입력되었는지 확인
+     * 수정할 대상이 있는 필드들을 새로 저장해 주기
+     * patch() 메소드가 한다
+     * Article 클래스에서 저장
+     */
+    target.patch(article);
+
+    return this.articleRepository.save(target);
+  }
+
+  public Article delete(Long id) {
+    Article target = this.articleRepository.findById(id).orElse(null);
+
+    if (target == null) {
+      log.info("잘못된 요청: {}번글은 테이블이 존재하지 않습니다", id);
+      return null;
+    }
+
+    this.articleRepository.delete(target);
+
+    return target;
+  }
 }

@@ -4,7 +4,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -65,7 +67,36 @@ public class ArticleApiController {
     return ResponseEntity.status(HttpStatus.CREATED).body(saved);
   }
 
-  // PATCH
+  // PATCH 수정 요청
+  @PatchMapping(value = "/api/articles/{id}")
+  public ResponseEntity<Article> update(@PathVariable Long id, @RequestBody ArticleForm dto) {
+    // 수정하기 위해 입력한 데이터
+    Article article = dto.toEntity();
 
-  // DELETE
+    // 수정할 엔티티를 조회한다
+    Article updated = this.articleService.update(id, dto);
+
+    if (updated == null) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    return ResponseEntity.status(HttpStatus.OK).body(updated);
+  }
+
+  // DELETE 글 번호 이용해서 삭제
+  @DeleteMapping(value = "/api/articles/{id}")
+  public ResponseEntity<Article> delete(@PathVariable Long id) {
+    /*
+     * 삭제한 데이터를 확인해서 null
+     * 아니면 정상적으로 삭제되었다고 선택해서 돌려줄 것
+     * 아니면 삭제 과정에서 오류가 발생했는지 확인한다
+     */
+    Article deleted = this.articleService.delete(id);
+
+    if (deleted == null) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  }
 }
