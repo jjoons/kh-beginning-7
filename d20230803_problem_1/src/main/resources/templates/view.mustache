@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    {{> components/link_script_head }}
+</head>
+
+<body>
+    <div>
+        {{# article }}
+        <div>
+            <div>{{ id }}</div>
+            <div>{{ title }}</div>
+            <div>{{ content }}</div>
+        </div>
+
+        {{# commentList }}
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-secondary">
+                <span>{{ nickname }}</span>
+                <button type="button" class="btn btn-outline-primary btn-sm">수정</button>
+            </li>
+            <li class="list-group-item">
+                <div>{{ body }}</div>
+            </li>
+        </ul>
+        {{/ commentList }}
+        {{/ article }}
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-dark">
+                <div>댓글 쓰기</div>
+            </li>
+            <li></li>
+        </ul>
+        {{> components/link_script_body }}
+</body>
+
+</html>
