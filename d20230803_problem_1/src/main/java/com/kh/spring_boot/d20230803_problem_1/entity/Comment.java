@@ -57,4 +57,22 @@ public class Comment {
         .article(article)
         .build();
   }
+
+  // 댓글 수정 메소드
+  public void patch(CommentDTO dto) {
+    // 댓글을 수정하기 위해 요청한 id와 DB에 저장된 id가 다를 경우 예외를 발생시킨다
+    if (!this.id.equals(dto.getId())) {
+      throw new IllegalArgumentException("댓글 수정 실패! 잘못된 id가 입력되었습니다");
+    }
+
+    // 댓글 작성자 이름이 넘어왔는지 확인
+    if (dto.getNickname() != null) {
+      this.body = dto.getNickname();
+    }
+
+    // 수정할 댓글 내용이 넘어왔는지 확인
+    if (dto.getBody() != null) {
+      this.body = dto.getBody();
+    }
+  }
 }

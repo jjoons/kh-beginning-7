@@ -2,44 +2,44 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Document</title>
-    {{> components/link_script_head }}
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Document</title>
+  {{> components/link_script_head }}
 </head>
 
 <body>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Content</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{# articleList }}
-            <tr>
-                <td>
-                    {{ id }}
-                </td>
-                <td>
-                    <a href="/view/{{ id }}">{{ title }}</a>
-                </td>
-                <td>{{ content }}</td>
-            </tr>
-            {{/ articleList }}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3">
-                    <a href="/write" class="btn btn-success">글쓰기</a>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
-    {{> components/link_script_body }}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{# articleList }}
+      <tr>
+        <td>
+          {{ id }}
+        </td>
+        <td>
+          <a href="/view/{{ id }}">{{ title }}</a>
+        </td>
+        <td>{{ content }}</td>
+      </tr>
+      {{/ articleList }}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">
+          <a href="/write" class="btn btn-success">글쓰기</a>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  {{> components/link_script_body }}
 </body>
 
 </html>
