@@ -71,7 +71,7 @@ public class CommentService {
     Comment created = this.commentRepository.save(comment);
 
     // DTO로 변환해서 리턴한다
-    return CommentDTO.createCommentDTO(comment);
+    return CommentDTO.createCommentDTO(created);
   }
 
   // 댓글 수정
