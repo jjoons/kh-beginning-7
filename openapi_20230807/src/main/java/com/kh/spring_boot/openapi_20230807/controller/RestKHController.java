@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RestKHController {
-  @Value("${OPENDATA_API_KEY_ENCODED}")
+  @Value("${OPENDATA_API_KEY}")
   private String apiKey;
+  @Value("${OPENDATA_API_KEY_ENCODED}")
+  private String encodedApiKey;
 
   @GetMapping(value = "/api/flight")
   public ResponseEntity<?> flight() {
@@ -29,6 +31,7 @@ public class RestKHController {
       var url = new URL(urlBuilder.toString());
 
       HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+      urlConnection.setRequestProperty("Authorization", "Infuser " + this.apiKey);
       var is = urlConnection.getInputStream();
       var isr = new InputStreamReader(is);
       var reader = new BufferedReader(isr);
