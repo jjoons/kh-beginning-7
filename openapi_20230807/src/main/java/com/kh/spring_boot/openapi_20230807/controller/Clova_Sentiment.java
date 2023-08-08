@@ -33,7 +33,7 @@ public class Clova_Sentiment {
       var contentMap = new LinkedHashMap<String, Object>();
       contentMap.put("content", "싸늘하다. 가슴에 비수가 날아와 꽂힌다.");
       var content = mapper.writeValueAsString(contentMap);
-      System.out.println(content);
+      System.out.println(content); // {"content":"싸늘하다. 가슴에 비수가 날아와 꽂힌다."}
 
       String apiUrl = "https://naveropenapi.apigw.ntruss.com/sentiment-analysis/v1/analyze";
       /*
@@ -49,7 +49,6 @@ public class Clova_Sentiment {
       con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
       con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
       con.setRequestProperty("Content-Type", "application/json");
-      con.setRequestProperty("Content-Type", "application/json");
 
       // POST Request
       String postParams = "content=" + content;
@@ -58,6 +57,8 @@ public class Clova_Sentiment {
       con.setDoOutput(true);
       con.setDoInput(true);
 
+      // DataOutputStream wr = new DataOutputStream(con.getOutputStream());
+      // wr.writeBytes(postParams);
       OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
       wr.write(content);
       wr.flush();
