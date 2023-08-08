@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+// @Controller
 @RestController
 public class Clova_Sentiment {
   @Value("${NAVER_CLOUD_PLATFORM_CLIENT_ID}")
